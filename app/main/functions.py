@@ -1,4 +1,5 @@
 from .. import db
+from ..models import Actor
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd 
 from datetime import datetime, timedelta 

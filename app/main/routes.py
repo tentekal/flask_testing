@@ -3,6 +3,7 @@ from .. import db
 from ..models import Actor
 from . import main
 from .forms import NameForm, RadForm
+from .functions import return_df, return_col
 from datetime import datetime
 
 @main.route('/', methods=['GET', 'POST'])
@@ -11,10 +12,14 @@ def index():
     rad_form = RadForm()
     
     if rad_form.validate_on_submit():
+
         print(rad_form.example.data)
-        
-    select = request.form.get('col_select')
-    column_choices = [{'name':'first_name'}, {'name':'last_name'}, {'name':'last_update'}]
+        session['selection'] = rad_form.example.data
+        rad_form.example.data = ''
+
+    rad_form.example.data = ''
+    df = return_df(session.get('selection'))
+    df = df.style.render()     
     
     if form.validate_on_submit():
         old_name = session.get('name')
@@ -26,24 +31,13 @@ def index():
         return redirect(url_for('index'))
 
   
-    if request.method == "POST":
-        print(select)
-        df = return_df(select)
-        df = df.style.render()
-        return render_template('index.html',
-                           current_time=datetime.utcnow(),
-                           form=form,
-                           name=session.get('name'),
-                           column_choices=column_choices,
-                           df=df,
-                           rad_form=rad_form)
         
     return render_template('index.html',
                            current_time=datetime.utcnow(),
                            form=form,
                            name=session.get('name'),
-                           column_choices=column_choices,
-                           rad_form=rad_form)
+                           rad_form=rad_form,
+                           df=df)
 
 @main.route('/user/<name>')
 def user(name):

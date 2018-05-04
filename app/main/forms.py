@@ -8,5 +8,5 @@ class NameForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class RadForm(FlaskForm):
-    example = RadioField('Label', choices=[('value','description'),('value_two','whatever')])
+    example = RadioField('Label', choices=[('first_name','First Names'),('last_name','Last Names')])
     

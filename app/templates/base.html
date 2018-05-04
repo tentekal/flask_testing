@@ -2,10 +2,17 @@
 
 {% block title %}Index{% endblock %}
 
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='WPL-logo.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='WPL-logo.ico') }}" type="image/x-icon">
+{% endblock %}
+
 {% block navbar %}
 <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
+            <a href="#" class="navbar-left"><img style="max-width: 50px" src="/static/WPL-logo.png"></a>
             <button type="button" class=".navbar-toggle"
             data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
