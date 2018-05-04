@@ -14,14 +14,14 @@ class Config:
 
 class DevelopmentConfig(Config):
 	DEBUG = True
-	SQLALCHEMY_DATABASE_URI = os.environ.get("postgresql://tentakel:Squ1ddles@127.0.0.1:5432/dvdrental")
+	SQLALCHEMY_DATABASE_URI = os.environ.get("")
 
 class TestingConfig(Config):
 	TESTING = True
-	SQLALCHEMY_DATABASE_URI = "postgresql://tentakel:Squ1ddles@127.0.0.1:5432/dvdrental"
+	SQLALCHEMY_DATABASE_URI = ""
 
 class ProductionConfig(Config):
-	SQLALCHEMY_DATABASE_URI = "postgresql://tentakel:Squ1ddles@127.0.0.1:5432/dvdrental"
+	SQLALCHEMY_DATABASE_URI = ""
 
 
 config = {
